@@ -1,26 +1,180 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @import "tailwindcss";
+/* src/app/globals.css */
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --foreground-rgb: 17, 24, 39;  /* Dark gray for better contrast */
+  --background-start-rgb: 250, 250, 250;
+  --background-end-rgb: 255, 255, 255;
+  --primary-color: 79, 70, 229;
+  --secondary-color: 99, 102, 241;
+  --accent-color: 129, 140, 248;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
   }
 }
 
+* {
+  transition: all 0.3s ease-in-out;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(135deg, #f0f4ff 0%, #f9fafb 100%);
+  min-height: 100vh;
+  background-image: linear-gradient(135deg, #f0f4ff 0%, #f9fafb 100%);
+  background-repeat: repeat;
+  background-size: cover;
+}
+
+/* Text styles */
+h1, h2, h3, h4, h5, h6 {
+  color: rgb(var(--foreground-rgb));
+}
+
+p, span, div {
+  color: rgb(var(--foreground-rgb));
+}
+
+/* Smooth animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideIn {
+  from { transform: translateX(-20px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+.animate-slide-in {
+  animation: slideIn 0.5s ease-out forwards;
+}
+
+/* Modern scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 4px;
+  transition: background 0.2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
+
+/* Smooth hover effects */
+.hover-lift {
+  transition: transform 0.2s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-2px);
+}
+
+/* Glass effect */
+.glass {
+  background: linear-gradient(120deg, #eef2ff 60%, #f5f3ff 100%);
+  border: 1px solid #c7d2fe;
+  box-shadow: 0 4px 24px 0 rgba(99,102,241,0.10);
+  color: #111827 !important;
+  backdrop-filter: blur(8px);
+}
+
+/* Button styles */
+.btn-primary {
+  @apply px-4 py-2 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white rounded-lg shadow-md hover:from-indigo-600 hover:to-pink-600 hover:scale-105 transition-all duration-200;
+}
+
+/* Card styles */
+.card {
+  background: linear-gradient(120deg, #f0f9ff 60%, #fdf2f8 100%);
+  border: 1px solid #a5b4fc;
+  box-shadow: 0 4px 24px 0 rgba(139,92,246,0.10);
+  color: #111827 !important;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.card:hover {
+  box-shadow: 0 8px 32px 0 rgba(99,102,241,0.18);
+  transform: translateY(-2px) scale(1.01);
+}
+
+/* Table header accent */
+thead th {
+  background: linear-gradient(90deg, #6366f1 0%, #a5b4fc 100%);
+  color: #111 !important;
+  font-weight: 800;
+  border-bottom: 2px solid #a5b4fc;
+}
+
+/* Table row hover */
+tbody tr:hover {
+  background: linear-gradient(90deg, #f3e8ff 0%, #e0e7ff 100%);
+}
+
+/* Filter label accent */
+label {
+  color: #7c3aed;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+/* Filter panel accent */
+.filter-panel {
+  background: linear-gradient(120deg, #e0e7ff 60%, #f3e8ff 100%);
+  border: 1px solid #a5b4fc;
+  box-shadow: 0 2px 12px 0 rgba(139,92,246,0.10);
+}
+
+/* Dropdown accent */
+.dropdown-panel {
+  background: linear-gradient(120deg, #f3e8ff 60%, #e0e7ff 100%);
+  border: 1px solid #a5b4fc;
+}
+
+.filter-panel input,
+.filter-panel select,
+.filter-panel .dropdown-panel,
+.filter-panel .dropdown-panel * {
+  color: #111 !important;
+  background: #fff !important;
+}
+
+.filter-panel label {
+  color: #111 !important;
+  font-weight: 700;
+}
+
+/* Result section in filter panel */
+.filter-panel .result-box {
+  background: #e0e7ff;
+  color: #111 !important;
+  font-weight: 700;
+  border-radius: 0.5rem;
+  padding: 0.75rem;
+  margin-top: 1.5rem;
+  box-shadow: 0 1px 4px 0 rgba(99,102,241,0.08);
+  font-size: 1rem;
 }
